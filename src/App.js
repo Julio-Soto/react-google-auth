@@ -1,5 +1,5 @@
 import './App.css';
-import {signInWithGoogle} from './firebase.js'
+import {signInWithGoogle,signOutofGoogle} from './firebase.js'
 import {useSelector} from 'react-redux'
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
   return (
     <div className="App">
       <button onClick={signInWithGoogle}>Sign In</button>
+      <button onClick={signOutofGoogle}>Sign Out</button>
       <h1>{name}</h1>
       <h1>{email}</h1>
       <h1>{imageURL}</h1>
