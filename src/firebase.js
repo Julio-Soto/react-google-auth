@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import {getAuth,GoogleAuthProvider,signInWithPopup,signOut} from 'firebase/auth'
 import { store } from "./store";
-import {createProfile} from './actions'
+import {createProfile,eraseProfile} from './actions'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -40,5 +40,9 @@ export const signInWithGoogle = () => {
 
 export const signOutofGoogle = () => {
     signOut(auth)
-        .then(result => console.log(result))
+        .then(result => {
+            console.log(result)
+            store.dispatch(eraseProfile())
+        })
+
 }

@@ -6,6 +6,9 @@ const userProfileReducer = (state ={},action) => {
                 email: action.payload.email,
                 imageURL: action.payload.imageURL
             }
+        case 'eraseProfile': {
+            return {}
+        }
         default :
             return state
 

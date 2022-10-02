@@ -8,3 +8,7 @@ export const createProfile = (userData) => ({
         imageURL: userData.imageURL
     }
 })
+
+export const eraseProfile = () => ({
+    type: 'eraseProfile'
+})
