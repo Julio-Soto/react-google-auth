@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {getAuth,GoogleAuthProvider,signInWithPopup,signOut} from 'firebase/auth'
+import {getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged} from 'firebase/auth'
 import { store } from "./store";
 import {createProfile,eraseProfile} from './actions'
 // TODO: Add SDKs for Firebase products that you want to use
@@ -23,10 +23,12 @@ const auth = getAuth(app)
 
 const provider = new GoogleAuthProvider()
 
+onAuthStateChanged(auth, result => console.log('login changed ', result))
+
 export const signInWithGoogle = () => {
     signInWithPopup(auth,provider)
     .then(result =>{
-        console.log(result.user.displayName)
+        //console.log(result.user.displayName)
         store.dispatch(createProfile({
             name: result.user.displayName,
             email: result.user.email,
@@ -41,7 +43,7 @@ export const signInWithGoogle = () => {
 export const signOutofGoogle = () => {
     signOut(auth)
         .then(result => {
-            console.log(result)
+            console.log('singout ' + result)
             store.dispatch(eraseProfile())
         })
 
